@@ -1,0 +1,43 @@
+<div class="storage-container">
+    <div class="new-list-container">
+        <div class="header">
+            <h1>Create New List</h1>
+            <button class="back-button" routerLink="/"> Back </button>
+        </div>
+    
+        <div class="content">
+            <div class="form-container">
+                <label for="list-title">List Title</label>
+                <input 
+                    #listTitleInput
+                    type="text" 
+                    id="list-title" 
+                    placeholder="Enter list name" 
+                    required
+                />
+    
+                <!-- <label for="task-title">Task Title</label>
+                <input 
+                    type="text" 
+                    id="task-title" 
+                    placeholder="Enter task title" 
+                    required
+                /> -->
+    
+                <!-- <button class="add-task-button" (click)="addTask()">+ Add Task</button> -->
+    
+                <!-- <div class="task-list">
+                    <h3>Tasks</h3>
+                    <ul>
+                        <li *ngFor="let task of tasks">{{ task }}</li>
+                    </ul>
+                </div> -->
+    
+                <button class="save-list-button" style="background-color: brown;" routerLink="/" >Cancel</button>
+                <button class="save-list-button" style="margin-left: 380px; background-color: rgb(89, 186, 126);" (click)="createNewList(listTitleInput.value)">Create</button>
+            </div>
+        </div>
+    </div>
+    
+
+</div>

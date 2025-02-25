@@ -1,0 +1,171 @@
+@import '../../../styles.scss'; // Import global styles
+
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: rgb(255, 232, 210);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    h1 {
+        margin: 0;
+        font-size: 24px;
+        color: $primary;
+        font-family: $family-sans-serif;
+    }
+
+    .search-bar {
+        input {
+            padding: 10px;
+            border: $control-border-width solid $input-border-color;
+            border-color: rgb(193, 178, 178);
+            border-radius: 5px;
+            width: 300px;
+            background-color: rgb(255, 232, 210);
+            box-shadow: $input-shadow;
+        }
+    }
+
+    .upload-button {
+        padding: 10px 20px;
+        background-color: $primary;
+        color: white;
+        border: none;
+        border-radius: 150px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: darken($primary, 10%);
+        }
+    }
+}
+
+.content {
+    display: flex;
+    flex: 1;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: rgb(255, 232, 210); // Couleur de fond de la sidebar
+    padding: 10px;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+
+    ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            padding: 10px;
+            cursor: pointer;
+            transition: box-shadow 0.2 ease;// Animation fluide
+
+            // Effet hover
+            &:hover {
+                background-color: $primary; // Couleur de fond au survol
+                color: white; // Couleur du texte au survol
+                border-radius: 5px; // Bord arrondi au survol
+            }
+
+            // Style pour l'élément actif
+            &.active {
+                background-color: $primary;
+                color: white;
+                transform: scale(0.95);
+                border-radius: 5px;
+            }
+        }
+    }
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: $beige;
+    
+    
+}
+
+.file-section {
+    margin-bottom: 30px;
+
+    h2 {
+        margin-bottom: 20px;
+        font-size: 20px;
+        color: $dark-purple;
+    }
+}
+
+.file-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Augmenter minmax à 250px ou plus */
+    gap: 20px;
+}
+
+.file-card {
+    background-color: white;
+    padding: 25px; /* Augmenter le padding pour plus d'espace dans la carte */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease; /* Animation fluide sur hover */
+
+    /* Optionnel: ajouter une bordure ou modifier la largeur */
+    width: 100%; /* Cela permet à la carte de s'étendre dans son conteneur */
+
+    &:not(.complete) {
+        cursor: pointer;
+
+        &:hover {
+            box-shadow: 0 0 0 5px #eeeeee;
+            transform: scale(1.02); /* Légère augmentation de taille au survol */
+        }
+    }
+
+    .file-icon {
+        font-size: 25px; /* Agrandir l'icône */
+        margin-right: 10px;
+    }
+
+    .file-info {
+        display: flex;
+        flex-direction: column;
+
+        .file-name {
+            font-weight: bold;
+            font-size: 18px; 
+            color: $dark-purple;
+        }
+
+        .file-status {
+            font-size: 14px; 
+            color: rgb(153, 89, 89);
+        }
+
+        .file-description {
+            font-size: 16px; 
+            color: $purple;
+        }
+
+        .file-date {
+            font-size: 14px;
+            color: $purple;
+        }
+    }
+}
+
+
+.circle-add-button{
+    position: absolute;
+    bottom: 35px;
+    right: 35px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: $primary;
+}

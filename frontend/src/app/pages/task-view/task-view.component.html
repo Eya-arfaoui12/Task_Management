@@ -1,0 +1,53 @@
+<div class="storage-container">
+    <div class="header">
+        <h1>Task</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="Search..." />
+        </div>
+        <button class="upload-button" [routerLink]="['/new-list']">+ Add New List </button>
+    </div>
+
+    <div class="content">
+        <div class="sidebar">
+            <ul *ngFor="let list of lists" [routerLink]="['/lists', list._id ]">
+                <!-- <li class="active">Dashboard</li> -->
+                <li>{{ list.title }}</li>
+                <!-- <li>Documents</li>
+                <li>Images</li>
+                <li>Video, Audio</li>
+                <li>Others</li>
+                <a *ngFor="let list of lists" [routerLink]="['/lists', list._id ]">
+                    <h2>{{ list.title }}</h2>
+                </a> -->
+            </ul>
+        </div>
+
+        <div class="main-content">
+            <div class="file-section">
+                <div class="file-grid" *ngFor="let task of tasks">
+                    <div class="file-card">
+                        <div class="file-icon">📄</div>
+                        <div class="file-info">
+                            <a>
+                                <span class="file-name">{{ task.title }}</span>
+                                <span class="file-description">{{ task.description || 'No description' }}</span>
+                                <span class="file-status" [ngClass]="{'completed': task.completed, 'pending': !task.completed}">
+                                    {{ task.completed ? 'Completed' : 'Pending' }}
+                                </span>
+                                <span class="file-date">{{ task.createdAt | date:'short' }}</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Add more file cards as needed -->
+                </div>
+            </div>
+
+        
+            <button class="circle-add-button button is-primary">
+                <img src="../../../assets/plus (1).png">
+            </button>
+            <!-- Add more sections for Video, Audio, Others, etc. -->
+        </div>
+    </div>
+</div>
