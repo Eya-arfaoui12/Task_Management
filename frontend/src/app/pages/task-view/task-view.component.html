@@ -29,12 +29,10 @@
                         <div class="file-icon">📄</div>
                         <div class="file-info">
                             <a>
-                                <span class="file-name">{{ task.title }}</span>
+                                <span class="file-name" (click)="onTaskClick(task)" [ngClass]="{ 'completed ': task.completed }">{{ task.title }}</span>
                                 <span class="file-description">{{ task.description || 'No description' }}</span>
-                                <span class="file-status" [ngClass]="{'completed': task.completed, 'pending': !task.completed}">
-                                    {{ task.completed ? 'Completed' : 'Pending' }}
-                                </span>
-                                <span class="file-date">{{ task.createdAt | date:'short' }}</span>
+                                <span class="status">{{ task?.completed ? 'Completed' : 'Pending' }}</span>
+                                <span class="file-date">{{ task?.createdAt | date:'short' }}</span>
                             </a>
                         </div>
                     </div>
@@ -44,8 +42,10 @@
             </div>
 
         
-            <button class="circle-add-button button is-primary">
-                <img routerLink="./new-task" src="../../../assets/plus (1).png">
+            <button class="circle-add-button button is-primary" routerLink="./new-task">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+                    <path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </button>
             <!-- Add more sections for Video, Audio, Others, etc. -->
         </div>

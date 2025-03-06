@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Params, RouterModule } from '@angular/router';
 import { TaskService } from '../../task.service';
 import { CommonModule } from '@angular/common';
+import { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-task-view',
@@ -51,5 +52,13 @@ export class TaskViewComponent {
   // Fonction pour appliquer un style 'selected' à la liste active
   isSelected(listId: string): boolean {
     return this.selectedListId === listId;
+  }
+
+  onTaskClick(task: Task) {
+    // we want to set the task to completed
+    this.taskService.complete(task).subscribe(() => {
+      console.log("Completed successfully! ");
+      task.completed = !task.completed;
+    })
   }
 }
