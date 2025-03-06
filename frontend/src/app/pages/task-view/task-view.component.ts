@@ -22,7 +22,7 @@ export class TaskViewComponent {
     // Récupérer les paramètres d'URL pour obtenir l'ID de la liste sélectionnée
     this.route.params.subscribe((params: Params) => {
       this.selectedListId = params['listId'];  // Récupère l'ID de la liste sélectionnée dans l'URL
-      console.log('List ID from params:', this.selectedListId);
+      //console.log('List ID from params:', this.selectedListId);
       
       // Si un 'listId' est présent dans l'URL, on récupère les tâches pour cette liste
       if (this.selectedListId) {
