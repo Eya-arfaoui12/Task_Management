@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router'; // ✅ Import du RouterModule
+import { Router, RouterModule } from '@angular/router'; // ✅ Import du RouterModule
 import { TaskService } from '../../task.service';
 import { CommonModule } from '@angular/common';
+import { List } from '../../models/list.model';
 
 @Component({
   selector: 'app-new-list',
@@ -12,12 +13,16 @@ import { CommonModule } from '@angular/common';
 })
 export class NewListComponent {
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, private router: Router) { }
 
   createNewList(title: string) {
-    this.taskService.createList(title).subscribe((response: any) => {
-      console.log(response);
-      // Now we navigate to /lists/response._id
+    this.taskService.createList(title).subscribe((list: List) => {
+      console.log(list);
+      if (list && list._id) {
+        this.router.navigate(['/lists', list._id]); 
+      } else {
+        console.error('Erreur : list._id est undefined');
+      }
     });
   }
 }
