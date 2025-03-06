@@ -16,9 +16,9 @@ app.use(bodyParser.json());
 
 app.use(cors({
     origin: 'http://localhost:4200', // Autorise seulement ton frontend Angular
-    methods: 'GET,POST,PATCH,DELETE', // Méthodes HTTP autorisées
+    methods: 'GET, POST, HEAD, OPTIONS, PATCH, DELETE', // Méthodes HTTP autorisées
     allowedHeaders: 'Content-Type, Authorization' // En-têtes autorisés
-  }));
+}));
 
 /* ROUTE HANDLERS */
 
@@ -70,6 +70,7 @@ app.delete('/lists/:id', (req, res)=> {
 //get all tasks of a specific list
 app.get('/lists/:listId/tasks', (req,res) =>{
     Task.find({_listId: req.params.listId}).then((tasks)=> {
+        // console.log("Tasks fetched:", tasks); 
         res.send(tasks)
     })
 })
@@ -107,7 +108,7 @@ app.patch('/lists/:listId/tasks/:taskId', (req, res) => {
     }, {
         $set: req.body
     }).then(()=>{
-        res.sendStatus(200);
+        res.send({message: 'Updated successfully! '})
     })
 });
 

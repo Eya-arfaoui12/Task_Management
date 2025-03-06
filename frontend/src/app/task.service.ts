@@ -11,8 +11,8 @@ export class TaskService {
 
   constructor(private webReqService: WebRequestService) { }
 
-  getLists() {
-    return this.webReqService.get('lists');
+  getLists(): Observable<List[]> {
+    return this.webReqService.get<List[]>('lists');
   }
 
   createList(title: string): Observable<List> {
@@ -20,12 +20,19 @@ export class TaskService {
     return this.webReqService.post<List>('lists', {title});
   }
 
-  getTasks(listId: string): Observable<any[]>{
-    return this.webReqService.get(`lists/${listId}/tasks`);
+  getTasks(listId: string): Observable<Task[]>{
+    return this.webReqService.get<Task[]>(`lists/${listId}/tasks`);
   }
  
-  createTask(title: string, listId: string): Observable<Task> {
-    //we want to send a web request to create a task
-    return this.webReqService.post<Task>(`lists/${listId}/tasks`, {title});
+  createTask(title: string, description: string, listId: string): Observable<Task> {
+    // Envoyer une requête avec title et description
+    return this.webReqService.post<Task>(`lists/${listId}/tasks`, { title, description });
   }
+
+  complete(task: Task) {
+    return this.webReqService.patch(`lists/${task._listId}/tasks/${task._id}`, {
+      completed: !task.completed
+    });
+  }
+
 }

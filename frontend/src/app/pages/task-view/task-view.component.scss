@@ -113,20 +113,21 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    transition: transform 0.3s ease; /* Animation fluide sur hover */
-
+    transition: box-shadow 0.2s ease, transform 0.2s ease;/* Animation fluide sur hover */
+    cursor: pointer;
+                
     /* Optionnel: ajouter une bordure ou modifier la largeur */
     width: 100%; /* Cela permet à la carte de s'étendre dans son conteneur */
-
-    &:not(.complete) {
-        cursor: pointer;
-
-        &:hover {
-            box-shadow: 0 0 0 5px #eeeeee;
-            transform: scale(1.02); /* Légère augmentation de taille au survol */
-        }
+    
+    &:active {
+        transform: scale(0.95);
     }
 
+    &:hover {
+        box-shadow: 0 0 0 5px #eeeeee;
+        
+    }
+    
     .file-icon {
         font-size: 25px; /* Agrandir l'icône */
         margin-right: 10px;
@@ -140,6 +141,27 @@
             font-weight: bold;
             font-size: 18px; 
             color: $dark-purple;
+
+            &:not(.complete) {
+                cursor: pointer;
+                transition: box-shadow 0.2s ease, transform 0.2s ease;
+                
+                &:active {
+                    transform: scale(0.95);
+                }
+
+                &:hover {
+                    box-shadow: 0 0 0 5px #eeeeee;
+                    
+                }
+            }
+
+            &.completed {
+                text-decoration: line-through;
+                opacity: 0.8;
+            }
+        
+
         }
 
         .file-status {
