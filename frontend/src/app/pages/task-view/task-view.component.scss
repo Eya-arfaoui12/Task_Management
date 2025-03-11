@@ -10,6 +10,17 @@
     background-color: rgb(255, 232, 210);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+    .top-bar{
+        margin-bottom: 20px;
+        display: flex;
+        .title {
+            flex-grow: 1;
+            margin: 0;
+        }
+    }
+    
+      
+
     h1 {
         margin: 0;
         font-size: 24px;
@@ -43,9 +54,13 @@
     }
 }
 
+  
+
 .content {
     display: flex;
     flex: 1;
+
+    
 }
 
 .sidebar {

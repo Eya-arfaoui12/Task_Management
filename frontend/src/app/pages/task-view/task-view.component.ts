@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Params, RouterModule } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { TaskService } from '../../task.service';
 import { CommonModule } from '@angular/common';
 
@@ -14,9 +14,9 @@ export class TaskViewComponent {
 
   lists: any[] = [];
   tasks: any[] = [];
-  selectedListId: string | null = null;
+  selectedListId!: string ;
 
-  constructor(private taskService: TaskService, private route: ActivatedRoute) { }
+  constructor(private taskService: TaskService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     // Récupérer les paramètres d'URL pour obtenir l'ID de la liste sélectionnée
@@ -47,9 +47,17 @@ export class TaskViewComponent {
       }
     });
   }
+ onDeleteListClick(){
+    this.taskService.deleteList(this.selectedListId).subscribe((res: any) => {
+      this.router.navigate(['/listes']);
+      console.log(res);
+    });
+  }
 
   // Fonction pour appliquer un style 'selected' à la liste active
   isSelected(listId: string): boolean {
     return this.selectedListId === listId;
   }
+
+ 
 }
