@@ -9,13 +9,13 @@ const TaskSchema = new mongoose.Schema({
             trim: true // Supprime les espaces inutiles
         },
         _listId: {
-            type: mongoose.Types.ObjectId,
+            type: String,
             required: true
         },
         description: {
             type: String,
-            minlength: 1,
-            trim: true
+            trim: true,
+            default: "" 
         },
         completed: {
             type: Boolean,

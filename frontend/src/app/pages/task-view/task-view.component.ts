@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { TaskService } from '../../task.service';
 import { CommonModule } from '@angular/common';
+import { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-task-view',
@@ -22,7 +23,7 @@ export class TaskViewComponent {
     // Récupérer les paramètres d'URL pour obtenir l'ID de la liste sélectionnée
     this.route.params.subscribe((params: Params) => {
       this.selectedListId = params['listId'];  // Récupère l'ID de la liste sélectionnée dans l'URL
-      console.log('List ID from params:', this.selectedListId);
+      //console.log('List ID from params:', this.selectedListId);
       
       // Si un 'listId' est présent dans l'URL, on récupère les tâches pour cette liste
       if (this.selectedListId) {
@@ -59,5 +60,12 @@ export class TaskViewComponent {
     return this.selectedListId === listId;
   }
 
- 
+
+  onTaskClick(task: Task) {
+    // we want to set the task to completed
+    this.taskService.complete(task).subscribe(() => {
+      console.log("Completed successfully! ");
+      task.completed = !task.completed;
+    })
+  }
 }

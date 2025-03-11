@@ -1,1 +1,37 @@
-<p>new-task works!</p>
+<div class="storage-container">
+    <div class="new-list-container">
+        <div class="header">
+            <h1>Create New Task</h1>
+            <button class="back-button" routerLink="/"> Back </button>
+        </div>
+
+        <div class="content">
+            <div class="form-container">
+                <label for="list-title">Task Title</label>
+                <input 
+                    #taskTitleInput
+                    type="text" 
+                    id="list-title" 
+                    placeholder="Enter task name" 
+                    required
+                />
+
+                <!-- Zone de texte pour la description -->
+                <label for="task-description">Task Description</label>
+                <textarea 
+                    #taskDescriptionInput
+                    id="task-description" 
+                    placeholder="Enter task description"
+                    rows="4"
+                ></textarea>
+
+
+                <button class="save-list-button" style="background-color: brown;" routerLink="/">Cancel</button>
+                <button class="save-list-button" style="margin-left: 380px; background-color: rgb(89, 186, 126);" 
+                    (click)="createTask(taskTitleInput.value, taskDescriptionInput.value)">
+                    Create
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
